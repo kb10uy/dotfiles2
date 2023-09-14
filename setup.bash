@@ -34,6 +34,7 @@ make_config_symlink() {
   if [[ -e "${target_dir}" ]]; then
     log_warn "symlink target '${target_dir}' already exists"
   else
+    log_info "linking config directory '$1'"
     ln -s "${base_dir}" "${target_dir}"
   fi
 }
@@ -149,6 +150,7 @@ install_extra_tools() {
   "${HOME}/.fzf/install" --no-key-bindings --no-completion --no-update-rc --no-fish --no-bash
 
   # ripgrep
+  log_info "=> ripgrep"
   case "$(get_distro)" in
     "debian")
       sudo apt-get -y install ripgrep

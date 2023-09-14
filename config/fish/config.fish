@@ -16,7 +16,7 @@ if status is-interactive;
   # Install fisher if not exist
   if not type -q "fisher"
     curl -sL "https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish" | builtin source
-    fisher install "jorgebucaran/fisher"
+    fisher update
   end
 
   if [ -e "$interactive_dependency_file" ]
