@@ -140,6 +140,28 @@ install_fish() {
   esac
 }
 
+install_extra_tools() {
+  log_info "installing extra tools"
+
+  # fzf
+  log_info "=> fzf"
+  git clone --depth 1 "https://github.com/junegunn/fzf.git" "${HOME}/.fzf"
+  "${HOME}/.fzf/install" --no-key-bindings --no-completion --no-update-rc --no-fish --no-bash
+
+  # ripgrep
+  case "$(get_distro)" in
+    "debian")
+      sudo apt-get -y install ripgrep
+      ;;
+    "ubuntu")
+      sudo apt-get -y install ripgrep
+      ;;
+    "arch")
+      paru -S --noconfirm ripgrep
+      ;;
+  esac
+}
+
 # Main routine
 
 main() {
@@ -153,6 +175,7 @@ main() {
   install_extra_package_manager
   install_neovim
   install_fish
+  install_extra_tools
 
   log_success "dotfiles2 setup finished!"
 }
