@@ -78,7 +78,8 @@ link_config_directories() {
 
 install_rust() {
   if [[ -e "${HOME}/.cargo" ]]; then
-    log_warn "Rust toolchain already installed"
+    log_info "updating Rust toolchain"
+    "${HOME}/.cargo/bin/rustup" update
     return 0
   fi
 
