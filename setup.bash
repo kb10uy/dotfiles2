@@ -156,12 +156,12 @@ install_fish() {
   log_info "installing fish"
   case "$(get_distro os)" in
     "debian")
-      sudo add-apt-repository ppa:fish-shell/release-3
-      sudo apt update
       sudo apt-get -y install fish
       chsh -s "/usr/bin/fish"
       ;;
     "ubuntu")
+      sudo add-apt-repository ppa:fish-shell/release-3
+      sudo apt update
       sudo apt-get -y install fish
       chsh -s "/usr/bin/fish"
       ;;
