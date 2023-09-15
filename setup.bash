@@ -1,6 +1,8 @@
 #!/bin/bash
+set -e
 
 readonly DOTFILES2_DIR="$(cd $(dirname $0) && pwd)"
+declare -A DISTRO
 
 # Log functions
 
@@ -24,7 +26,24 @@ log_success() {
 # Task functions
 
 get_distro() {
-  echo "$(source /etc/os-release && echo ${ID})"
+  if [[ -z "${DISTRO["os"]}" ]]; then
+    case "$(uname)" in
+      "Linux")
+        DISTRO["os"]="$(source /etc/os-release && echo ${ID})"
+        DISTRO["version"]="$(source /etc/os-release && echo ${VERSION_ID})"
+        DISTRO["versioncode"]="$(source /etc/os-release && echo ${VERSION_CODENAME})"
+        ;;
+      "Darwin")
+        DISTRO["os"]="macos"
+        DISTRO["version"]="$(sw_vers --productVersion)"
+        DISTRO["versioncode"]=""
+        ;;
+      *)
+        log_fatal "unsupported OS"
+        ;;
+    esac
+  fi
+  echo "${DISTRO[$1]}"
 }
 
 make_config_symlink() {
@@ -65,7 +84,7 @@ install_rust() {
 
   # install build essentials
   log_info "installing build tools"
-  case "$(get_distro)" in
+  case "$(get_distro os)" in
     "debian")
       sudo apt-get -y install build-essential
       ;;
@@ -75,8 +94,11 @@ install_rust() {
     "arch")
       sudo pacman -S base-devel
       ;;
+    "macos")
+      log_warn "xcode-select --install must be executed before"
+      ;;
     *)
-      log_info "extra package manager skipped"
+      log_warn "build tools skipped"
       ;;
   esac
 
@@ -89,7 +111,7 @@ install_rust() {
 }
 
 install_extra_package_manager() {
-  case "$(get_distro)" in
+  case "$(get_distro os)" in
     "debian")
       log_info "installing snapd"
       sudo apt-get -y install snapd
@@ -102,6 +124,10 @@ install_extra_package_manager() {
       log_info "installing paru"
       "${HOME}/.cargo/bin/cargo" install paru
       ;;
+    "macos")
+      log_info "installing brew"
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      ;;
     *)
       log_info "extra package manager skipped"
       ;;
@@ -110,7 +136,7 @@ install_extra_package_manager() {
 
 install_neovim() {
   log_info "installing Neovim"
-  case "$(get_distro)" in
+  case "$(get_distro os)" in
     "debian")
       sudo snap install --classic nvim
       ;;
@@ -120,13 +146,18 @@ install_neovim() {
     "arch")
       paru -S --noconfirm neovim
       ;;
+    "macos")
+      brew install neovim
+      ;;
   esac
 }
 
 install_fish() {
   log_info "installing fish"
-  case "$(get_distro)" in
+  case "$(get_distro os)" in
     "debian")
+      sudo add-apt-repository ppa:fish-shell/release-3
+      sudo apt update
       sudo apt-get -y install fish
       chsh -s "/usr/bin/fish"
       ;;
@@ -138,6 +169,10 @@ install_fish() {
       paru -S --noconfirm fish
       chsh -s "/usr/bin/fish"
       ;;
+    "macos")
+      brew install fish
+      chsh -s "/usr/local/bin/fish"
+      ;;
   esac
 }
 
@@ -146,20 +181,33 @@ install_extra_tools() {
 
   # fzf
   log_info "=> fzf"
-  git clone --depth 1 "https://github.com/junegunn/fzf.git" "${HOME}/.fzf"
+  if [[ ! -e "${HOME}/.fzf" ]]; then
+    git clone --depth 1 "https://github.com/junegunn/fzf.git" "${HOME}/.fzf"
+  else
+    pushd "${HOME}/.fzf"
+      git pull origin master
+    popd
+  fi
   "${HOME}/.fzf/install" --no-key-bindings --no-completion --no-update-rc --no-fish --no-bash
 
+  # eza
+  log_info "=> eza"
+  "${HOME}/.cargo/bin/cargo" install eza
+
   # ripgrep
-  log_info "=> ripgrep"
-  case "$(get_distro)" in
+  log_info "=> ripgrep, fd, bat"
+  case "$(get_distro os)" in
     "debian")
-      sudo apt-get -y install ripgrep
+      sudo apt-get -y install ripgrep fd bat
       ;;
     "ubuntu")
-      sudo apt-get -y install ripgrep
+      sudo apt-get -y install ripgrep fd bat
       ;;
     "arch")
-      paru -S --noconfirm ripgrep
+      paru -S --noconfirm ripgrep fd bat
+      ;;
+    "macos")
+      brew install ripgrep fd bat
       ;;
   esac
 }
@@ -168,7 +216,7 @@ install_extra_tools() {
 
 main() {
   check_base_directory
-  log_info "detected distro: $(get_distro)"
+  log_info "detected distro: $(get_distro os)"
 
   make_directories
   link_config_directories
