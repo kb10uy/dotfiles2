@@ -198,10 +198,10 @@ install_extra_tools() {
   log_info "=> ripgrep, fd, bat"
   case "$(get_distro os)" in
     "debian")
-      sudo apt-get -y install ripgrep fd bat
+      sudo apt-get -y install ripgrep rust-fd-find bat
       ;;
     "ubuntu")
-      sudo apt-get -y install ripgrep fd bat
+      sudo apt-get -y install ripgrep rust-fd-find bat
       ;;
     "arch")
       paru -S --noconfirm ripgrep fd bat
