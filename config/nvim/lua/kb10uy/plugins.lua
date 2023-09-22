@@ -38,6 +38,7 @@ local function lazy_nvim_plugins()
 
     -- Filetypes
     { "dag/vim-fish", ft = "fish" },
+    { "dmix/elvish.vim", ft = "elvish" },
     { "cespare/vim-toml", ft = "toml" },
     { "othree/yajs.vim", ft = "javascript" },
     { "leafgarland/typescript-vim", ft = "typescript" },
