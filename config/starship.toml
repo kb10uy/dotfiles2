@@ -1,7 +1,7 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 format = """
-$username\
+$os\
 $hostname\
 [\ue0b0](fg:#40ff9a bg:#339cff)\
 $directory\
@@ -15,8 +15,17 @@ $status\
 $line_break\
 $character"""
 
+[os]
+disabled = false
+format = "[ $symbol]($style)"
+style = "fg:#407bcf bg:#40ff9a bold"
+[os.symbols]
+Arch = "Ar"
+Debian = "De"
+Ubuntu = "Ub"
+
 [hostname]
-format = "[@$hostname ]($style)"
+format = "[ $hostname ]($style)"
 style = "fg:#407bcf bg:#40ff9a"
 
 [username]
