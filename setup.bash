@@ -74,6 +74,8 @@ link_config_directories() {
   make_config_symlink "fish"
   make_config_symlink "nvim"
   make_config_symlink "nano"
+  make_config_symlink "elvish"
+  make_config_symlink "starship.toml"
 }
 
 install_rust() {
@@ -195,20 +197,26 @@ install_extra_tools() {
   log_info "=> eza"
   "${HOME}/.cargo/bin/cargo" install eza
 
+  # starship
+  log_info "=> starship"
+  "${HOME}/.cargo/bin/cargo" install starship
+
   # ripgrep
-  log_info "=> ripgrep, fd, bat"
+  log_info "=> ripgrep, fd, bat, procs"
   case "$(get_distro os)" in
     "debian")
       sudo apt-get -y install ripgrep fd-find bat
+      sudo snap install procs
       ;;
     "ubuntu")
       sudo apt-get -y install ripgrep fd-find bat
+      sudo snap install procs
       ;;
     "arch")
-      paru -S --noconfirm ripgrep fd bat
+      paru -S --noconfirm ripgrep fd bat procs
       ;;
     "macos")
-      brew install ripgrep fd bat
+      brew install ripgrep fd bat procs
       ;;
   esac
 }
