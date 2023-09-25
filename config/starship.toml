@@ -37,7 +37,7 @@ format = "[ $symbol$branch ]($style)"
 style = "fg:#f2f8ff bg:#d46a7f"
 
 [git_status]
-format = "[ $staged$modified$untracked]($style)"
+format = "[( $staged$modified$untracked)]($style)"
 style = "fg:#354052 bg:#ffb5be"
 staged = "+$count "
 modified = "!$count "
