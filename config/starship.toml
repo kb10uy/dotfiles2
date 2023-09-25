@@ -43,7 +43,7 @@ read_only_style = "fg:#a80800 bg:#339cff"
 
 [git_branch]
 format = "[ $symbol$branch ]($style)"
-style = "fg:#f2f8ff bg:#d46a7f"
+style = "fg:#f2f8ff bg:#d46a7f bold"
 
 [git_status]
 format = "[( $staged$modified$untracked)]($style)"
