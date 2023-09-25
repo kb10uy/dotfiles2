@@ -27,10 +27,10 @@ disabled = false
 format = "[ $symbol]($style)"
 style = "fg:#407bcf bg:#40ff9a bold"
 [os.symbols]
-Arch = "[Ar](fg:#32568f bg:#40ff9a bold)"
-Debian = "[De](fg:#80334e bg:#40ff9a bold)"
-Ubuntu = "[Ub](fg:#f58d42 bg:#40ff9a bold)"
-Macos = "[mc](fg:#383838 bg:#40ff9a bold)"
+Arch = "[ ](fg:#32568f bg:#40ff9a bold)"
+Debian = "[ ](fg:#80334e bg:#40ff9a bold)"
+Ubuntu = "[ ](fg:#f58d42 bg:#40ff9a bold)"
+Macos = "[ ](fg:#383838 bg:#40ff9a bold)"
 
 [hostname]
 format = "[ $hostname ]($style)"
