@@ -1,6 +1,8 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 format = """
+$time\
+[\ue0b0](fg:#fcfcff bg:#40ff9a)\
 $os\
 $hostname\
 [\ue0b0](fg:#40ff9a bg:#339cff)\
@@ -14,6 +16,11 @@ $status\
 [\ue0b0 ](fg:#fef1fc)\
 $line_break\
 $character"""
+
+[time]
+disabled = false
+format = "[ $time ]($style)"
+style = "fg:#224444 bg:#fcfcff"
 
 [os]
 disabled = false
@@ -29,7 +36,7 @@ format = "[ $hostname ]($style)"
 style = "fg:#407bcf bg:#40ff9a"
 
 [username]
-format = "[ $user]($style)"
+format = "[$user]($style)"
 style_user = "fg:#407bcf bg:#40ff9a"
 style_root = "fg:#e63930 bg:#40ff9a"
 show_always = true

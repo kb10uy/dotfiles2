@@ -1,16 +1,9 @@
-use epm
-use str
+use path
+use platform
 
-set paths = [
-  $E:HOME'/.cargo/bin'
-  $E:HOME'/.local/bin'
-  $E:HOME'/.fzf/bin'
-  '/usr/local/go/bin'
-  '/usr/local/ssl/bin'
-  '/usr/local/bin'
-  '/usr/bin'
-  '/bin'
-  '/sbin'
-]
+var shell-env-file = $E:HOME"/dotfiles2/shell-env/"(platform:hostname)".elv"
+if (path:is-regular $shell-env-file) {
+  eval (slurp < $shell-env-file)
+}
 
 eval (starship init elvish)
