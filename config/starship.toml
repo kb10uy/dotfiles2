@@ -1,0 +1,50 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = """
+$username\
+$hostname\
+[\ue0b0](fg:#40ff9a bg:#339cff)\
+$directory\
+[\ue0b0](fg:#339cff bg:#d46a7f)\
+$git_branch\
+[\ue0b0](fg:#d46a7f bg:#ffb5be)\
+$git_status\
+[\ue0b0](fg:#ffb5be bg:#fef1fc)\
+$status\
+[\ue0b0 ](fg:#fef1fc)\
+$line_break\
+$character"""
+
+[hostname]
+format = "[@$hostname ]($style)"
+style = "fg:#407bcf bg:#40ff9a"
+
+[username]
+format = "[ $user]($style)"
+style_user = "fg:#407bcf bg:#40ff9a"
+style_root = "fg:#e63930 bg:#40ff9a"
+show_always = true
+
+[directory]
+format = "[ [$read_only]($read_only_style)$path ]($style)"
+style = "bold fg:#fdfddf bg:#339cff"
+fish_style_pwd_dir_length = 1
+read_only = "! "
+read_only_style = "fg:#a80800 bg:#339cff"
+
+[git_branch]
+format = "[ $symbol$branch ]($style)"
+style = "fg:#f2f8ff bg:#d46a7f"
+
+[git_status]
+format = "[ $staged$modified$untracked]($style)"
+style = "fg:#354052 bg:#ffb5be"
+staged = "+$count "
+modified = "!$count "
+untracked = "?$count "
+
+[status]
+disabled = false
+format = "[ @$status ]($style)"
+style = "fg:#ff5274 bg:#fef1fc bold"
+
