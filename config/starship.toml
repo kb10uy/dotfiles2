@@ -30,10 +30,12 @@ style = "fg:#407bcf bg:#40ff9a bold"
 Arch = "Ar"
 Debian = "De"
 Ubuntu = "Ub"
+Macos = "mc"
 
 [hostname]
 format = "[ $hostname ]($style)"
 style = "fg:#407bcf bg:#40ff9a"
+ssh_only = false
 
 [username]
 format = "[$user]($style)"
