@@ -65,15 +65,13 @@ local function apply_colorscheme()
   end
 
   -- Override some colors
-  vim.cmd("colorscheme solarized8");
+  vim.cmd("colorscheme onehalfdark");
   if is_background_transparent() then
     vim.cmd("highlight! link SignColumn LineNr Normal");
     vim.cmd("highlight Normal ctermbg=NONE guibg=NONE");
     vim.cmd("highlight NormalFloat ctermbg=12 guibg=#2a4f54");
     vim.cmd("highlight clear CursorLine");
   end
-  vim.cmd("highlight Pmenu ctermbg=12 guibg=#2a4f54");
-  vim.cmd("highlight PmenuSel ctermbg=13 gui=reverse,bold guibg=#2a4f54");
 end
 
 return {

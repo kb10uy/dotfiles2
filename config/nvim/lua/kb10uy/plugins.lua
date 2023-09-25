@@ -76,7 +76,12 @@ local function lazy_nvim_plugins()
 
     -- Misc.
     "vim-jp/vimdoc-ja",
-    "lifepillar/vim-solarized8",
+    {
+      "sonph/onehalf",
+      config = function(plugin)
+        vim.opt.rtp:append(plugin.dir .. "/vim")
+      end,
+    },
   };
 end
 
