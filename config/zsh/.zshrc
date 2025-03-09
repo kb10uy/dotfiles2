@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 autoload -U compinit
+compinit -d "${XDG_CACHE_HOME}/.zcompdump"
 
 _has_command() {
   local name="$1"
@@ -17,6 +18,11 @@ if _has_command carapace; then
   export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
   zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
   source <(carapace _carapace)
+fi
+
+# FZF
+if _has_command fzf; then
+  source <(fzf --zsh)
 fi
 
 # mise
