@@ -1,3 +1,0 @@
-github.com/zzamboni/elvish-modules
-github.com/doubleagent/rivendell
-github.com/zzamboni/elvish-completions
