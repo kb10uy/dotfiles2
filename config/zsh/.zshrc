@@ -30,6 +30,11 @@ if _has_command mise; then
   eval "$(mise activate zsh)"
 fi
 
+# sheldon (zsh plugins)
+if _has_command sheldon; then
+  eval "$(sheldon source)"
+fi
+
 # Dependency
 if [[ -f "${DOTFILES2_ZSHRC}" ]]; then
   source "${DOTFILES2_ZSHRC}"
