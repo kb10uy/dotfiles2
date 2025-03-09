@@ -37,21 +37,10 @@ local function lazy_nvim_plugins()
     },
 
     -- Filetypes
-    { "dag/vim-fish", ft = "fish" },
     { "dmix/elvish.vim", ft = "elvish" },
     { "cespare/vim-toml", ft = "toml" },
-    { "othree/yajs.vim", ft = "javascript" },
-    { "leafgarland/typescript-vim", ft = "typescript" },
     { "rust-lang/rust.vim", ft = "rust" },
-    { "StanAngeloff/php.vim", ft = "php" },
     { "chr4/nginx.vim", ft = "nginx" },
-    {
-      "lifepillar/pgsql.vim",
-      ft = "sql",
-      config = function()
-        vim.g.sql_type_default = "pgsql";
-      end,
-    },
 
     -- LSP
     {
@@ -59,17 +48,11 @@ local function lazy_nvim_plugins()
       dependencies = {
         "neovim/nvim-lspconfig",
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        "hrsh7th/cmp-vsnip",
-        "hrsh7th/vim-vsnip",
       },
       ft = {
         "rust", "go",
         "c", "cpp",
-        "javascript", "typescript",
-        "php", "kotlin",
       },
       config = require("kb10uy.plugins").initialize_lsp,
     },
