@@ -13,7 +13,7 @@ export SAVEHIST=5000
 
 # dotfiles2 common variables
 export DOTFILES2_DIR="${HOME}/dotfiles2"
-export DOTFILES2_DEP_NAME="$(hostname)"
+export DOTFILES2_DEP_NAME="$(uname -n)"
 export DOTFILES2_ZSHENV="${DOTFILES2_DIR}/shell-env/${DOTFILES2_DEP_NAME}.zshenv"
 export DOTFILES2_ZSHRC="${DOTFILES2_DIR}/shell-env/${DOTFILES2_DEP_NAME}.zshrc"
 
