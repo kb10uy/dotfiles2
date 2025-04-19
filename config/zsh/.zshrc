@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+setopt AUTO_CD
+
 autoload -U compinit
 compinit -d "${XDG_CACHE_HOME}/.zcompdump"
 
@@ -28,6 +30,10 @@ fi
 # mise
 if _has_command mise; then
   eval "$(mise activate zsh)"
+fi
+
+if _has_command pay-respects; then
+  eval "$(pay-respects zsh --alias)"
 fi
 
 # sheldon (zsh plugins)

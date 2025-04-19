@@ -41,6 +41,8 @@ local function lazy_nvim_plugins()
     { "cespare/vim-toml", ft = "toml" },
     { "rust-lang/rust.vim", ft = "rust" },
     { "chr4/nginx.vim", ft = "nginx" },
+    { "isobit/vim-caddyfile", ft = "caddyfile" },
+    { "google/vim-jsonnet", ft = "jsonnet" },
 
     -- LSP
     {
