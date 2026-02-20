@@ -27,14 +27,14 @@ foreground = "0xdcdfe4"
 
 [font]
 builtin_box_drawing = false
-size = 14.0
+size = 12.0
 
 [font.normal]
 family = "MomiageMono Nerd Font"
 
 [font.offset]
 x = 0
-y = 2
+y = 0
 
 [[keyboard.bindings]]
 action = "Paste"
