@@ -27,6 +27,10 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^[[A" history-beginning-search-backward-end
 bindkey "^[[B" history-beginning-search-forward-end
+### zle puts the terminal into application cursor mode (terminfo smkx),
+### where the arrow keys send ^[OA / ^[OB instead of ^[[A / ^[[B.
+bindkey "^[OA" history-beginning-search-backward-end
+bindkey "^[OB" history-beginning-search-forward-end
 
 ## Completions
 autoload -U compinit
