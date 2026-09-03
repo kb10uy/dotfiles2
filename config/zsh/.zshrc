@@ -40,13 +40,6 @@ if _has_command starship; then
   eval "$(starship init zsh)"
 fi
 
-## Carapace
-if _has_command carapace; then
-  export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
-  zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-  source <(carapace _carapace)
-fi
-
 ## sheldon (zsh plugins)
 if _has_command sheldon; then
   eval "$(sheldon source)"
