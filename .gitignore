@@ -10,3 +10,7 @@
 # ZDOTDIR がこのディレクトリなので、`compinit` を -d なしで実行する
 # 外部ツール (子 zsh を起動するもの) が .zcompdump を落としていくことがある
 /config/zsh/.zcompdump*
+
+# Work Environment
+/.work
+/shell-env/.work*
