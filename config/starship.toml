@@ -19,7 +19,8 @@ $line_break\
 $character"""
 
 [custom.cwd]
-command = "echo -n $(pwd)"
+command = "pwd"
+format = "$output"
 style = ""
 when = true
 
