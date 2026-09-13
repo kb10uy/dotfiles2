@@ -14,8 +14,14 @@ $git_status\
 [\ue0b0](fg:#ffb5be bg:#fef1fc)\
 $status\
 [\ue0b0 ](fg:#fef1fc)\
+\u001b\\]1337;CurrentDir=${custom.cwd}\u0007\
 $line_break\
 $character"""
+
+[custom.cwd]
+command = "echo -n $(pwd)"
+style = ""
+when = true
 
 [time]
 disabled = false
