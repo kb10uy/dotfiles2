@@ -1,6 +1,7 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 format = """
+\u001b\\]1337;CurrentDir=${custom.cwd}\u0007\
 $time\
 [\ue0b0](fg:#fcfcff bg:#40ff9a)\
 $os\
@@ -14,7 +15,6 @@ $git_status\
 [\ue0b0](fg:#ffb5be bg:#fef1fc)\
 $status\
 [\ue0b0 ](fg:#fef1fc)\
-\u001b\\]1337;CurrentDir=${custom.cwd}\u0007\
 $line_break\
 $character"""
 
